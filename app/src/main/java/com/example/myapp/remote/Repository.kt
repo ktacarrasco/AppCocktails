@@ -26,6 +26,11 @@ class Repository(context: Context) {
         return cocktailsList
     }
 
+    fun  passIdtoFragment(id :Int):LiveData<Cocktails>{
+
+        return  db.barDao().getIdList(id)
+    }
+
     // esto hace la llamada a retrofit
     fun fetchDataFromServer() {
         val service = RetrofitClient.retrofitInstance()

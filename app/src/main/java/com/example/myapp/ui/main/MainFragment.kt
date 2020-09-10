@@ -66,17 +66,20 @@ class MainFragment : Fragment() , Adapter.MyClickListener {
             val bundle=Bundle()
             bundle.putInt("id",cocktails.id)
 
-       /* if (container2.visibility == View.GONE) {
-            TransitionManager.beginDelayedTransition(cardView, AutoTransition())
-            container2.visibility = View.VISIBLE
 
-        } else {
-            TransitionManager.beginDelayedTransition(cardView, AutoTransition())
-            container2.visibility = View.GONE
 
-        }*/
 
-           // findNavController().navigate(R.id.action_mainFragment_to_secondFragment,bundle)
+    /* if (container2.visibility == View.GONE) {
+          TransitionManager.beginDelayedTransition(cardView, AutoTransition())
+          container2.visibility = View.VISIBLE
+
+      } else {
+          TransitionManager.beginDelayedTransition(cardView, AutoTransition())
+          container2.visibility = View.GONE
+
+      }*/
+
+            findNavController().navigate(R.id.action_mainFragment_to_secondFragment,bundle)
 
 
     }

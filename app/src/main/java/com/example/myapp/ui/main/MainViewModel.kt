@@ -18,5 +18,9 @@ class MainViewModel  (application: Application) : AndroidViewModel(application) 
         return cocktailsList
     }
 
+    fun getIdDataFromDB(id: Int): LiveData<Cocktails> {
+        return repository.passIdtoFragment(id)
+    }
+
 
 }

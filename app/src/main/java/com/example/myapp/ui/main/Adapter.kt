@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapp.R
 import com.example.myapp.pojo.Cocktails
@@ -11,6 +12,10 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_cocktails.view.*
 
 class Adapter (var mdataSetP: List<Cocktails>, var listenerS: MainFragment): RecyclerView.Adapter<Adapter.photoHolder>() {
+
+
+    private var expandedPosition: Int = -1 //invento
+
 
     fun updateData(listCocktails: List<Cocktails>) {
         Log.d("UPDATE", "update ${listCocktails.size}")
@@ -45,10 +50,37 @@ class Adapter (var mdataSetP: List<Cocktails>, var listenerS: MainFragment): Rec
             .load(photo.url)
             .placeholder(R.drawable.ic_launcher_foreground)
             .into(holder.photoTv)
+
+        holder.itemView.setOnClickListener(View.OnClickListener{
+
+            Toast.makeText(holder.itemView.context,"$titletv", Toast.LENGTH_SHORT).show()
+            listenerS.onItemClick(mdataSetP.get(position))
+
+           /* //invento
+            if (position == expandedPosition) {
+                holder.itemView.container1.setVisibility(View.VISIBLE);
+            } else {
+                holder.itemView.container1.setVisibility(View.GONE);
+            }
+*/
+
+
+        })
+
+
+
     }
+
+
+
 
     interface MyClickListener {
 
         fun onItemClick(cocktails: Cocktails)
+
+    }
+    interface IAdapter{
+        fun getFromAdapter(id:Int)
+
     }
 }
