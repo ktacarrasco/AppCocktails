@@ -36,7 +36,7 @@ class Repository(context: Context) {
             override fun onResponse(call: Call<List<Cocktails>>, response: retrofit2.Response<List<Cocktails>>) {
                 Log.d(tag, response.body().toString())
                 CoroutineScope(Dispatchers.IO).launch {
-                    //response.body()?.let { db.shDao().insertAllSH(it) }
+
                     db.barDao().insertAll(response.body()!!)
                 }
             }

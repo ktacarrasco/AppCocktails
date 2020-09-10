@@ -45,6 +45,7 @@ class MainFragment : Fragment() , Adapter.MyClickListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         //Iniciando el ViewModel
+
         mViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         // Iniciando el adapter
         viewAdapter = Adapter(cocktailsList,this)
