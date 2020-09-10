@@ -1,0 +1,51 @@
+package com.example.myapp.remote
+
+
+import android.content.Context
+import android.util.Log
+import androidx.lifecycle.LiveData
+import com.example.myapp.db.RoomDBCocktails
+import com.example.myapp.pojo.Cocktails
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import okhttp3.Response
+import retrofit2.Call
+import retrofit2.Callback
+
+
+class Repository(context: Context) {
+
+    private val tag = "CocktailsRepository"
+
+    //esto viene  de la Base de datos
+    private val db: RoomDBCocktails = RoomDBCocktails.getDatabase(context)
+    private val cocktailsList = db.barDao().getAllcocktailsList()
+
+    fun passLiveDataToViewModel(): LiveData<List<Cocktails>> {
+        return cocktailsList
+    }
+
+    // esto hace la llamada a retrofit
+    fun fetchDataFromServer() {
+        val service = RetrofitClient.retrofitInstance()
+        val call = service.getTragos()
+
+
+        call.enqueue(object : Callback<List<Cocktails>> {
+            override fun onResponse(call: Call<List<Cocktails>>, response: retrofit2.Response<List<Cocktails>>) {
+                Log.d(tag, response.body().toString())
+                CoroutineScope(Dispatchers.IO).launch {
+                    //response.body()?.let { db.shDao().insertAllSH(it) }
+                    db.barDao().insertAll(response.body()!!)
+                }
+            }
+
+            override fun onFailure(call: Call<List<Cocktails>>, t: Throwable) {
+                Log.d(tag, t.message.toString())
+
+            }
+        })
+
+    }
+}
