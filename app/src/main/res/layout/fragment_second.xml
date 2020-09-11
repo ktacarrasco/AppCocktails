@@ -4,55 +4,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+     tools:context=".SecondFragment">
 
-    tools:context=".SecondFragment">
-
-    <ImageView
-        android:id="@+id/photoTV"
-        android:layout_width="135dp"
-        android:layout_height="147dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="84dp"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/titleTV"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="27dp"
-        android:text=""
-        android:textColor="#FA0C0101"
-        android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/photoTV"
-        tools:layout_editor_absoluteX="0dp" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
 
-    <TextView
-        android:id="@+id/ingredientsTV"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:text=""
-        android:textColor="#FA0C0101"
-        android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/titleTV"
-        tools:layout_editor_absoluteX="0dp" />
+            <ImageView
+                android:id="@+id/photoTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:padding="40dip"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="84dp"
+                tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/preparationTV"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:text=""
-        android:textColor="#FA0C0101"
-        android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/ingredientsTV"
-        tools:layout_editor_absoluteX="0dp" />
+                <TextView
+                    android:id="@+id/titleTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:padding="20dip"
+                    android:textColor="#FA0C0101"
+                    android:textSize="40sp"
+                    app:layout_constraintTop_toBottomOf="@+id/photoTV"
+                    tools:layout_editor_absoluteX="0dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp" />
+
+            <TextView
+                android:id="@+id/ingredientsTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="30dip"
+                android:textColor="#FA0C0101"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/titleTV" />
+
+
+            <TextView
+                android:id="@+id/preparationTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:padding="30dip"
+                android:textColor="#FA0C0101"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/ingredientsTV"
+                tools:layout_editor_absoluteX="0dp" />
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
