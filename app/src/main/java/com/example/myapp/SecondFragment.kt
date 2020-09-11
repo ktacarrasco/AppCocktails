@@ -54,8 +54,9 @@ class SecondFragment : Fragment(), Adapter.IAdapter {
                 view.titleTV.text = " ${it.name_cocktails}"
                 //view.titleTV.text = it.name
 
-                view.ingredientsTV.text = "Ingredientes: ${it.ingredients}"
-                view.preparationTV.text = "Preparacion: ${it.preparation}"
+                view.ingredientsTV.text = "Ingredientes: \n ${it.ingredients}"
+               // setMovementMethod(new ScrollingMovementMethod())
+                view.preparationTV.text = "Preparacion:  \n ${it.preparation}"
                 Picasso.get()
                     .load(it.url)
                     .placeholder(R.drawable.ic_launcher_foreground)
