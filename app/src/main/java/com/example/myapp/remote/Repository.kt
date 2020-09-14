@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.myapp.db.RoomDBCocktails
 import com.example.myapp.pojo.Cocktails
+import com.example.myapp.pojo.Tragos
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -37,16 +38,16 @@ class Repository(context: Context) {
         val call = service.getTragos()
 
 
-        call.enqueue(object : Callback<List<Cocktails>> {
-            override fun onResponse(call: Call<List<Cocktails>>, response: retrofit2.Response<List<Cocktails>>) {
+        call.enqueue(object : Callback<Tragos> {
+            override fun onResponse(call: Call<Tragos>, response: retrofit2.Response<Tragos>) {
                 Log.d(tag, response.body().toString())
                 CoroutineScope(Dispatchers.IO).launch {
 
-                    db.barDao().insertAll(response.body()!!)
+                    db.barDao().insertAll(response.body()?.tragos!!)
                 }
             }
 
-            override fun onFailure(call: Call<List<Cocktails>>, t: Throwable) {
+            override fun onFailure(call: Call<Tragos>, t: Throwable) {
                 Log.d(tag, t.message.toString())
 
             }
