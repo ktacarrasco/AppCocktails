@@ -16,6 +16,7 @@
             android:orientation="vertical" >
 
 
+
             <ImageView
                 android:id="@+id/photoTV"
                 android:layout_width="match_parent"

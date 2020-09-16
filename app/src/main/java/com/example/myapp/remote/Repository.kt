@@ -4,6 +4,7 @@ package com.example.myapp.remote
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
+import com.example.myapp.db.DaoCocktails
 import com.example.myapp.db.RoomDBCocktails
 import com.example.myapp.pojo.Cocktails
 import com.example.myapp.pojo.Tragos
@@ -32,6 +33,8 @@ class Repository(context: Context) {
         return  db.barDao().getIdList(id)
     }
 
+
+
     // esto hace la llamada a retrofit
     fun fetchDataFromServer() {
         val service = RetrofitClient.retrofitInstance()
@@ -54,4 +57,8 @@ class Repository(context: Context) {
         })
 
     }
+
+
+
+
 }

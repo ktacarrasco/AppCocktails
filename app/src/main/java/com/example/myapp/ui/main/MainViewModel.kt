@@ -14,6 +14,9 @@ class MainViewModel  (application: Application) : AndroidViewModel(application) 
         repository.fetchDataFromServer()
     }
 
+    //aregar favorito
+
+
     fun getDataFromDB(id: Int): LiveData<List<Cocktails>> {
         return cocktailsList
     }

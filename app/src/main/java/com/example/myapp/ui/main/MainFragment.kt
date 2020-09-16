@@ -1,22 +1,21 @@
 package com.example.myapp.ui.main
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.transition.AutoTransition
-import android.transition.TransitionManager
 import android.util.Log
+import android.view.*
+import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapp.R
 import com.example.myapp.pojo.Cocktails
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.item_cocktails.*
 import kotlinx.android.synthetic.main.main_fragment.*
+
 
 class MainFragment : Fragment() , Adapter.MyClickListener {
 
@@ -33,22 +32,31 @@ class MainFragment : Fragment() , Adapter.MyClickListener {
 
     private lateinit var viewModel: MainViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
-        val view :View=inflater.inflate(R.layout.main_fragment,container,false)
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+
+    ): View {
+        setHasOptionsMenu(true)//option menu
+        val view :View=inflater.inflate(R.layout.main_fragment, container, false)
+
+
 
 
         return view
 
     }
 
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         //Iniciando el ViewModel
 
         mViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         // Iniciando el adapter
-        viewAdapter = Adapter(cocktailsList,this)
+        viewAdapter = Adapter(cocktailsList, this)
         RecyclerView.layoutManager = LinearLayoutManager(context)
         RecyclerView.adapter = viewAdapter
 
@@ -57,31 +65,35 @@ class MainFragment : Fragment() , Adapter.MyClickListener {
             Log.d("cant", it.toString())
             viewAdapter.updateData(it)
 
+            //desde aqui es un fav que termina...
+
 
         })
     }
 
+
     override fun onItemClick(cocktails: Cocktails) {
 
             val bundle=Bundle()
-            bundle.putInt("id",cocktails.id)
+            bundle.putInt("id", cocktails.id)
+
+            findNavController().navigate(R.id.action_mainFragment_to_secondFragment, bundle)
+
+
+    }
 
 
 
 
-    /* if (container2.visibility == View.GONE) {
-          TransitionManager.beginDelayedTransition(cardView, AutoTransition())
-          container2.visibility = View.VISIBLE
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        super.onOptionsItemSelected(item)
+        when {
 
-      } else {
-          TransitionManager.beginDelayedTransition(cardView, AutoTransition())
-          container2.visibility = View.GONE
+            item.itemId == R.id.add ->  findNavController().navigate(R.id.action_mainFragment_to_favoriteFragment)
 
-      }*/
-
-            findNavController().navigate(R.id.action_mainFragment_to_secondFragment,bundle)
-
-
+            item.itemId == R.id.exit-> activity?.finish()
+        }
+        return true
     }
 
 

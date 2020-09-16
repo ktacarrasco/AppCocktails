@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.item_cocktails.view.*
 class Adapter (var mdataSetP: List<Cocktails>, var listenerS: MainFragment): RecyclerView.Adapter<Adapter.photoHolder>() {
 
 
-    private var expandedPosition: Int = -1 //invento
+    private var favList =  ArrayList<Cocktails>() //invento
 
 
     fun updateData(listCocktails: List<Cocktails>) {
@@ -56,18 +56,20 @@ class Adapter (var mdataSetP: List<Cocktails>, var listenerS: MainFragment): Rec
             Toast.makeText(holder.itemView.context,"$titletv", Toast.LENGTH_SHORT).show()
             listenerS.onItemClick(mdataSetP.get(position))
 
-           /* //invento
-            if (position == expandedPosition) {
-                holder.itemView.container1.setVisibility(View.VISIBLE);
-            } else {
-                holder.itemView.container1.setVisibility(View.GONE);
-            }
-*/
-
 
         })
 
+        holder.itemView.favBtn.setOnClickListener(View.OnClickListener {
+            //photo.favStatus(mdataSetPtrue)
+           holder.itemView.favBtn.setBackgroundResource(R.drawable.ic_favorite_red_24dp);
+           holder.itemView.favBtn.setSelected(true)
+        })
 
+       /* holder.itemView.setOnLongClickListener(View.OnLongClickListener {
+            listenerS.onItemClickFav(mdataSetP.get(position)
+
+
+        })*/
 
     }
 
