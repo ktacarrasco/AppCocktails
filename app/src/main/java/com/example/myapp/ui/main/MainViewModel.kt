@@ -3,8 +3,10 @@ package com.example.myapp.ui.main
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewModelScope
 import com.example.myapp.pojo.Cocktails
 import com.example.myapp.remote.Repository
+import kotlinx.coroutines.launch
 
 class MainViewModel  (application: Application) : AndroidViewModel(application) {
     private val repository =  Repository(application)
@@ -15,6 +17,14 @@ class MainViewModel  (application: Application) : AndroidViewModel(application) 
     }
 
     //aregar favorito
+    fun updateFav(cocktails: Cocktails) = viewModelScope.launch {
+        repository.updateFav(cocktails)
+    }
+
+    //favorito
+    fun getFavFromDB(id: Int): LiveData<List<Cocktails>>{
+        return cocktailsList
+    }
 
 
     fun getDataFromDB(id: Int): LiveData<List<Cocktails>> {

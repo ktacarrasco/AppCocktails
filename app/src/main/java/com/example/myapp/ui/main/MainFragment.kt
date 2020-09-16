@@ -3,8 +3,6 @@ package com.example.myapp.ui.main
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -12,8 +10,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapp.R
 import com.example.myapp.pojo.Cocktails
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.item_cocktails.*
 import kotlinx.android.synthetic.main.main_fragment.*
 
 
@@ -65,7 +61,7 @@ class MainFragment : Fragment() , Adapter.MyClickListener {
             Log.d("cant", it.toString())
             viewAdapter.updateData(it)
 
-            //desde aqui es un fav que termina...
+
 
 
         })
@@ -82,7 +78,17 @@ class MainFragment : Fragment() , Adapter.MyClickListener {
 
     }
 
+    override fun favClick(cocktails: Cocktails) {
 
+            cocktails.favStatus = true
+            mViewModel.updateFav(cocktails)
+
+    }
+
+    override fun desfavClick(cocktails: Cocktails) {
+        cocktails.favStatus = false
+        mViewModel.updateFav(cocktails)
+    }
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

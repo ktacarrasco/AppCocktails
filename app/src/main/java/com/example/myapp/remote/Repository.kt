@@ -33,7 +33,13 @@ class Repository(context: Context) {
         return  db.barDao().getIdList(id)
     }
 
+    suspend fun updateFav( cocktails: Cocktails){
+        db.barDao().updateFav(cocktails)
+    }
 
+    /* fun getFav(cocktails: Cocktails){
+        db.barDao().getAllFavcocktailsList(favStatus = true)
+    }*/
 
     // esto hace la llamada a retrofit
     fun fetchDataFromServer() {

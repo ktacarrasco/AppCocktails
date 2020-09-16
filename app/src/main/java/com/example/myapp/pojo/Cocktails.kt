@@ -12,7 +12,7 @@ val name_cocktails: String,
 val ingredients: String,
 val preparation: String,
 val url: String,
-val favStatus: Boolean)
+var favStatus: Boolean)
 
 
     /*(@PrimaryKey() @NonNull val  id : Int,

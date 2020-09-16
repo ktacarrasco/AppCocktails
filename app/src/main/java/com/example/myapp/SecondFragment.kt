@@ -13,16 +13,12 @@ import com.example.myapp.ui.main.MainViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_second.view.*
 
-// TODO: Rename parameter arguments, choose names that match
+
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "id"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SecondFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class SecondFragment : Fragment(), Adapter.IAdapter {
     // TODO: Rename and change types of parameters
     private var param1: Int? = null

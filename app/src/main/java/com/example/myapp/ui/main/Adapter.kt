@@ -11,7 +11,7 @@ import com.example.myapp.pojo.Cocktails
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_cocktails.view.*
 
-class Adapter (var mdataSetP: List<Cocktails>, var listenerS: MainFragment): RecyclerView.Adapter<Adapter.photoHolder>() {
+class Adapter(var mdataSetP: List<Cocktails>, var listenerS: MainFragment): RecyclerView.Adapter<Adapter.photoHolder>() {
 
 
     private var favList =  ArrayList<Cocktails>() //invento
@@ -51,6 +51,15 @@ class Adapter (var mdataSetP: List<Cocktails>, var listenerS: MainFragment): Rec
             .placeholder(R.drawable.ic_launcher_foreground)
             .into(holder.photoTv)
 
+        if (photo.favStatus.equals(true)) {
+            holder.itemView.favBtn.setBackgroundResource(R.drawable.ic_favorite_red_24dp);
+            holder.itemView.favBtn.setSelected(true)
+        }
+        else{
+            holder.itemView.favBtn.setBackgroundResource(R.drawable.ic_favorite_shadow_24dp);
+            holder.itemView.favBtn.setSelected(false)}
+
+
         holder.itemView.setOnClickListener(View.OnClickListener{
 
             Toast.makeText(holder.itemView.context,"$titletv", Toast.LENGTH_SHORT).show()
@@ -60,9 +69,18 @@ class Adapter (var mdataSetP: List<Cocktails>, var listenerS: MainFragment): Rec
         })
 
         holder.itemView.favBtn.setOnClickListener(View.OnClickListener {
-            //photo.favStatus(mdataSetPtrue)
-           holder.itemView.favBtn.setBackgroundResource(R.drawable.ic_favorite_red_24dp);
-           holder.itemView.favBtn.setSelected(true)
+
+
+            if (photo.favStatus.equals(false)) {
+                listenerS.favClick(mdataSetP.get(position))
+                            }
+            else {
+                listenerS.desfavClick(mdataSetP.get(position))}
+
+
+
+
+
         })
 
        /* holder.itemView.setOnLongClickListener(View.OnLongClickListener {
@@ -79,8 +97,10 @@ class Adapter (var mdataSetP: List<Cocktails>, var listenerS: MainFragment): Rec
     interface MyClickListener {
 
         fun onItemClick(cocktails: Cocktails)
-
+        fun favClick(cocktails: Cocktails)
+        fun desfavClick(cocktails: Cocktails)
     }
+
     interface IAdapter{
         fun getFromAdapter(id:Int)
 

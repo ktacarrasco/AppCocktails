@@ -1,5 +1,6 @@
 package com.example.myapp.db
 
+import android.location.GnssStatus
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.myapp.pojo.Cocktails
@@ -8,12 +9,16 @@ import com.example.myapp.pojo.Cocktails
 interface DaoCocktails {
 
     //Insertar un listado
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAll(listCocktails: List<Cocktails>)
 
     //agregar fav
     @Update
-    suspend fun updateFav(vararg cocktails: Cocktails)
+    suspend fun updateFav(cocktails: Cocktails)
+
+    // traer todos los elementos favoritos
+  /*  @Query("SELECT * FROM Cocktails_table WHERE favStatus")
+    fun getAllFavcocktailsList(favStatus: Boolean = true) : LiveData<List<Cocktails>>*/
 
 
     // traer todos los elementos de la tabla
