@@ -20,7 +20,7 @@ private const val ARG_PARAM2 = "param2"
 
 
 class SecondFragment : Fragment(), Adapter.IAdapter {
-    // TODO: Rename and change types of parameters
+
     private var param1: Int? = null
     private var param2: String? = null
     private lateinit var mViewModel: MainViewModel

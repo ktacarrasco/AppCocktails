@@ -17,7 +17,7 @@ interface DaoCocktails {
     suspend fun updateFav(cocktails: Cocktails)
 
     // traer todos los elementos favoritos
-   @Query("SELECT * FROM Cocktails_table WHERE favStatus=1")
+   @Query("SELECT * FROM Cocktails_table WHERE favStatus=1 ORDER BY name_cocktails ASC")
     fun getAllFavcocktailsList() : LiveData<List<Cocktails>>
 
 

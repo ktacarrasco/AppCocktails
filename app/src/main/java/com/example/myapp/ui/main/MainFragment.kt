@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapp.R
 import com.example.myapp.pojo.Cocktails
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.main_fragment.*
 
 
@@ -75,6 +76,8 @@ class MainFragment : Fragment() , Adapter.MyClickListener {
 
             cocktails.favStatus = true
             mViewModel.updateFav(cocktails)
+
+
 
     }
 

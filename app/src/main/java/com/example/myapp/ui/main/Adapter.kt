@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapp.FavoriteFragment
 import com.example.myapp.R
 import com.example.myapp.pojo.Cocktails
+import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_cocktails.view.*
 
@@ -74,21 +75,19 @@ class Adapter(var mdataSetP: List<Cocktails>, var listenerS: MyClickListener): R
 
             if (photo.favStatus.equals(false)) {
                 listenerS.favClick(mdataSetP.get(position))
-                            }
+                val snack = Snackbar.make(it,"Enviado a Cocktail Favorito", Snackbar.LENGTH_LONG)
+                snack.show()
+            }
             else {
-                listenerS.desfavClick(mdataSetP.get(position))}
-
+                listenerS.desfavClick(mdataSetP.get(position))
+            val snack = Snackbar.make(it,"Eliminado de Cocktails Favorito", Snackbar.LENGTH_LONG)
+            snack.show()
+            }
 
 
 
 
         })
-
-       /* holder.itemView.setOnLongClickListener(View.OnLongClickListener {
-            listenerS.onItemClickFav(mdataSetP.get(position)
-
-
-        })*/
 
     }
 
