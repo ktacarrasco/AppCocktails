@@ -23,9 +23,14 @@ class Repository(context: Context) {
     //esto viene  de la Base de datos
     private val db: RoomDBCocktails = RoomDBCocktails.getDatabase(context)
     private val cocktailsList = db.barDao().getAllcocktailsList()
+    private val cocktailsFavList = db.barDao().getAllFavcocktailsList()
 
     fun passLiveDataToViewModel(): LiveData<List<Cocktails>> {
         return cocktailsList
+    }
+
+    fun passLiveFavDataToViewModel(): LiveData<List<Cocktails>> {
+        return cocktailsFavList
     }
 
     fun  passIdtoFragment(id :Int):LiveData<Cocktails>{
@@ -37,9 +42,7 @@ class Repository(context: Context) {
         db.barDao().updateFav(cocktails)
     }
 
-    /* fun getFav(cocktails: Cocktails){
-        db.barDao().getAllFavcocktailsList(favStatus = true)
-    }*/
+
 
     // esto hace la llamada a retrofit
     fun fetchDataFromServer() {

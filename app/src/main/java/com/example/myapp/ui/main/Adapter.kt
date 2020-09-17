@@ -6,15 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapp.FavoriteFragment
 import com.example.myapp.R
 import com.example.myapp.pojo.Cocktails
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_cocktails.view.*
 
-class Adapter(var mdataSetP: List<Cocktails>, var listenerS: MainFragment): RecyclerView.Adapter<Adapter.photoHolder>() {
+class Adapter(var mdataSetP: List<Cocktails>, var listenerS: MyClickListener): RecyclerView.Adapter<Adapter.photoHolder>() {
 
 
-    private var favList =  ArrayList<Cocktails>() //invento
+
 
 
     fun updateData(listCocktails: List<Cocktails>) {

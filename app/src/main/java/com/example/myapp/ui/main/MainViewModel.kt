@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 class MainViewModel  (application: Application) : AndroidViewModel(application) {
     private val repository =  Repository(application)
     private val cocktailsList = repository.passLiveDataToViewModel()
+    private val cocktailsFavList = repository.passLiveFavDataToViewModel()
 
     fun fetchFromServer() {
         repository.fetchDataFromServer()
@@ -22,8 +23,8 @@ class MainViewModel  (application: Application) : AndroidViewModel(application) 
     }
 
     //favorito
-    fun getFavFromDB(id: Int): LiveData<List<Cocktails>>{
-        return cocktailsList
+    fun getFavFromDB(id: Int): LiveData<List<Cocktails>> {
+        return cocktailsFavList
     }
 
 

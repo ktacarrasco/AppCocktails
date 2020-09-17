@@ -26,8 +26,6 @@ class MainFragment : Fragment() , Adapter.MyClickListener {
         fun newInstance() = MainFragment()
     }
 
-    private lateinit var viewModel: MainViewModel
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,8 +34,6 @@ class MainFragment : Fragment() , Adapter.MyClickListener {
     ): View {
         setHasOptionsMenu(true)//option menu
         val view :View=inflater.inflate(R.layout.main_fragment, container, false)
-
-
 
 
         return view
@@ -60,9 +56,6 @@ class MainFragment : Fragment() , Adapter.MyClickListener {
         mViewModel.getDataFromDB(id).observe(viewLifecycleOwner, Observer {
             Log.d("cant", it.toString())
             viewAdapter.updateData(it)
-
-
-
 
         })
     }
@@ -96,6 +89,7 @@ class MainFragment : Fragment() , Adapter.MyClickListener {
         when {
 
             item.itemId == R.id.add ->  findNavController().navigate(R.id.action_mainFragment_to_favoriteFragment)
+
 
             item.itemId == R.id.exit-> activity?.finish()
         }
